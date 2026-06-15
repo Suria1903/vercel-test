@@ -23,8 +23,7 @@ function iso(d: Date) { return d.toISOString().slice(0, 10); }
           <button class="btn" (click)="toggleFilter()">
             <i class="ti" [class.ti-filter]="!filtering()" [class.ti-calendar-event]="filtering()"></i>
             {{ filtering() ? 'Daily view' : 'Revise / filter' }}</button>
-          <button class="btn primary" [disabled]="refreshing()" (click)="refresh()">
-            <i class="ti ti-refresh"></i>{{ refreshing() ? 'Refreshing…' : 'Refresh' }}</button>
+          
         </div>
       </div>
 
