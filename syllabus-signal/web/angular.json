@@ -21,7 +21,7 @@
             "scripts": []
           },
           "configurations": {
-            "production": { "optimization": true, "outputHashing": "all" },
+            "production": { "optimization": { "scripts": true, "styles": true, "fonts": false }, "outputHashing": "all" },
             "development": { "optimization": false, "sourceMap": true }
           },
           "defaultConfiguration": "production"
