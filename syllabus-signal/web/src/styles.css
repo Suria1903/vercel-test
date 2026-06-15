@@ -1,0 +1,137 @@
+/* ============================================================
+   Syllabus & Signal — design system
+   Identity: ink rail + warm paper surfaces, indigo as the one
+   accent. Newsreader (serif) for things you READ; Inter for UI;
+   IBM Plex Mono for eyebrow labels, dates and source tags.
+   Built for iPad landscape first.
+   ============================================================ */
+:root{
+  --ink:#17212B; --ink-soft:#22303C; --ink-line:rgba(255,255,255,.10);
+  --paper:#FBFAF7; --surface:#FFFFFF;
+  --line:rgba(23,33,43,.10); --line-strong:rgba(23,33,43,.20);
+  --text:#1B2530; --muted:#586773; --faint:#8B98A2;
+  --accent:#4F46E5; --accent-soft:#EEEDFE; --accent-text:#3730A3;
+  --good:#0F7A52; --good-soft:#E6F4EE;
+  --warn:#B26A07; --warn-soft:#FBF0DD;
+  --bad:#C2362F;  --bad-soft:#FBEBEA;
+  --r:14px; --r-sm:9px; --r-pill:999px;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --serif:'Newsreader',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  font-family:var(--sans); color:var(--text); background:var(--paper);
+  font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{margin:0;font-weight:500;color:var(--text);line-height:1.2}
+button{font-family:inherit}
+a{color:inherit;text-decoration:none}
+
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint)}
+.serif{font-family:var(--serif)}
+
+/* ---- App shell: fixed ink rail + scrolling content ---- */
+.shell{display:grid;grid-template-columns:248px 1fr;height:100vh;height:100dvh}
+.rail{background:var(--ink);color:#E7ECF1;display:flex;flex-direction:column;
+  padding:22px 16px;gap:4px}
+.brand{display:flex;align-items:center;gap:10px;padding:6px 10px 20px}
+.brand .mark{width:34px;height:34px;border-radius:9px;background:var(--accent);
+  display:grid;place-items:center;color:#fff;font-size:18px}
+.brand .name{font-family:var(--serif);font-size:18px;color:#fff;line-height:1.05}
+.brand .sub{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:#8FA0AE}
+.nav-item{display:flex;align-items:center;gap:12px;padding:11px 12px;
+  border-radius:var(--r-sm);color:#AEBDC8;font-size:14.5px;cursor:pointer;
+  border-left:2px solid transparent}
+.nav-item i{font-size:19px;width:20px;text-align:center}
+.nav-item:hover{background:var(--ink-soft);color:#E7ECF1}
+.nav-item.active{background:var(--ink-soft);color:#fff;border-left-color:var(--accent)}
+.rail-foot{margin-top:auto;border-top:1px solid var(--ink-line);padding-top:14px}
+.rail-user{display:flex;align-items:center;gap:10px;padding:6px 8px}
+.rail-user .avatar{width:30px;height:30px;border-radius:50%;background:var(--ink-soft);
+  display:grid;place-items:center;font-size:12px;color:#CBD6DF}
+.rail-user .who{font-size:12.5px;color:#CBD6DF;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.signout{background:none;border:none;color:#8FA0AE;cursor:pointer;font-size:18px;padding:6px}
+.signout:hover{color:#fff}
+
+.content{overflow-y:auto;padding:34px 40px 56px}
+.page{max-width:980px;margin:0 auto}
+.page-head{margin-bottom:24px}
+.page-head h1{font-size:26px}
+.page-head p{color:var(--muted);margin:4px 0 0;font-size:14.5px}
+
+/* ---- Cards ---- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:20px 22px}
+.card.tap{cursor:pointer;transition:border-color .12s,transform .12s}
+.card.tap:hover{border-color:var(--line-strong);transform:translateY(-1px)}
+.grid{display:grid;gap:16px}
+.grid.cards{grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+
+/* ---- Subject pill ---- */
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;
+  padding:4px 11px;border-radius:var(--r-pill)}
+.pill .dot{width:7px;height:7px;border-radius:50%}
+.pill.plain{background:var(--paper);color:var(--muted);border:1px solid var(--line)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.good{background:var(--good-soft);color:var(--good)}
+.pill.accent{background:var(--accent-soft);color:var(--accent-text)}
+
+/* ---- Buttons ---- */
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;
+  padding:10px 16px;min-height:44px;border-radius:var(--r-sm);cursor:pointer;
+  background:var(--surface);border:1px solid var(--line-strong);color:var(--text)}
+.btn:hover{background:#F3F2EE}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#4339d6}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--accent-text)}
+.btn:disabled{opacity:.55;cursor:default}
+
+/* ---- Metrics ---- */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px}
+.metric .v{font-size:30px;font-weight:500;line-height:1}
+.metric .l{font-size:12.5px;color:var(--muted);margin-top:7px}
+
+/* ---- Retention bar ---- */
+.bar{height:9px;border-radius:var(--r-pill);background:#ECEAE3;overflow:hidden}
+.bar > i{display:block;height:100%;border-radius:var(--r-pill)}
+
+/* ---- Forms ---- */
+input,select{font-family:inherit;font-size:14.5px;color:var(--text);background:var(--surface);
+  border:1px solid var(--line-strong);border-radius:var(--r-sm);padding:10px 12px;min-height:44px;width:100%}
+input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+label.fld{display:block}
+label.fld .cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:6px;display:block}
+
+/* ---- Misc ---- */
+.row{display:flex;align-items:center}
+.between{justify-content:space-between}
+.wrap{flex-wrap:wrap}
+.gap8{gap:8px}.gap12{gap:12px}
+.muted{color:var(--muted)}.faint{color:var(--faint)}
+.empty{text-align:center;color:var(--faint);padding:48px 0;font-size:14.5px}
+.divider{border-top:1px solid var(--line)}
+.live{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.live .ping{width:7px;height:7px;border-radius:50%;background:var(--good)}
+@media (prefers-reduced-motion:no-preference){
+  .live .ping{animation:ping 2s ease-in-out infinite}
+  @keyframes ping{0%,100%{opacity:.4}50%{opacity:1}}
+}
+
+/* iPad portrait / narrow: collapse rail to a top bar */
+@media (max-width:880px){
+  .shell{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+  .rail{flex-direction:row;align-items:center;padding:10px 14px;gap:2px;overflow-x:auto}
+  .brand{padding:0 14px 0 4px}.brand .sub{display:none}
+  .rail-foot{margin:0 0 0 auto;border:none;padding:0}
+  .nav-item{border-left:none;border-bottom:2px solid transparent;white-space:nowrap;padding:9px 11px}
+  .nav-item.active{border-left:none;border-bottom-color:var(--accent)}
+  .nav-item span{display:none}
+  .content{padding:22px}
+}
