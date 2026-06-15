@@ -1,9 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "cd web && npm install && npm run build",
+  "outputDirectory": "web/dist/web/browser",
+  "functions": {
+    "api/ingest.js": { "maxDuration": 60 }
+  },
   "crons": [
     { "path": "/api/ingest", "schedule": "30 1 * * *" }
   ],
-  "functions": {
-    "api/ingest.js": { "maxDuration": 300 }
-  }
+  "rewrites": [
+    { "source": "/((?!api).*)", "destination": "/index.html" }
+  ]
 }
